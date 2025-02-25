@@ -1,0 +1,10 @@
+Olá {{ nome }},
+
+Novo teste sendo enviado
+
+Espero que esteja tudo bem! Meu nome é Luis e estou entrando em contato para falar sobre oportunidades para {{ cargo }} na {{ empresa }}.
+
+Se estiver interessado, podemos marcar uma conversa para discutir melhor?
+
+Atenciosamente,  
+Luis Felipe de Moraes
