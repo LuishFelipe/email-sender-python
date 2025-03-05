@@ -2,14 +2,21 @@ from fastapi import FastAPI, HTTPException
 from fastapi.responses import RedirectResponse
 import requests
 import msal
-import os
 import pandas as pd
 from jinja2 import Template
+import os
+from dotenv import load_dotenv
+
+# Path of csv file
+arquive = r"C:\Users\LuisFelipe\Documents\applications\email-sender-outlook\arquivo.csv"
+
+# Carregar variáveis do .env
+load_dotenv()
 
 # Configurações do Azure
-CLIENT_ID = "CLIENT_ID"
-CLIENT_SECRET = "CLIENT_SECRET"
-TENANT_ID = "TENANT_ID"
+CLIENT_ID = os.getenv("CLIENT_ID_DSC")
+CLIENT_SECRET = os.getenv("CLIENT_SECRET_DSC")
+TENANT_ID = os.getenv("TENANT_ID_DSC")
 REDIRECT_URI = "http://localhost:8000/auth/callback"
 AUTHORITY = f"https://login.microsoftonline.com/{TENANT_ID}"
 SCOPES = ["https://graph.microsoft.com/.default"]
@@ -66,7 +73,7 @@ def send_emails():
         raise HTTPException(status_code=401, detail="Usuário não autenticado.")
 
     # Ler CSV com destinatários
-    file_path = "arquivo.csv"
+    file_path = arquive
     df = read_csv(file_path)
 
     # Criar template do e-mail
